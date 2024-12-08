@@ -13,7 +13,7 @@ const Event = sequelize.define('Event', {
         allowNull: false,
     },
     eventDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     eventTime: {
@@ -54,7 +54,11 @@ const Event = sequelize.define('Event', {
     },
     eventImage: {
         type: DataTypes.BLOB,
-        allowNull: false,
+        allowNull: true,
+    },
+    eventIcon: {
+        type: DataTypes.BLOB,
+        allowNull: true,
     },
 }, {
     timestamps: true, // Adds createdAt and updatedAt

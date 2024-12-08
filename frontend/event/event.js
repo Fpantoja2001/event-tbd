@@ -59,7 +59,7 @@ fetch('http://localhost:3000/api/event/getAll')
             eventsInCategory.forEach((i) => {
                 const newevent = document.createElement('div');
                 const a = document.createElement('a');
-                a.href = '../event-details/index.html';
+                a.href = `../event-details/index.html?eventid=${i.eventid}`;
                 a.appendChild(newevent);
 
                 a.className = 'column is-one-fifth bordered-column';

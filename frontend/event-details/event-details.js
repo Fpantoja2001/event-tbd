@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', async function() {
   //alert(JSON.stringify(meanrating));
 
   const url = new URL(window.location.href);
-  let eventId = url.searchParams.get('eventId');
+  let eventId = url.searchParams.get('eventid');
   if(eventId === null){
     eventId = 123;
   }
   //alert(eventId);
   //alert(url.origin);
-  url.pathname = `/v1/task/${eventId}`
+  url.pathname = `api/event/${eventId}`
   //url.searchParams.append("eventId", eventId);
 
   url.searchParams.append("deBug", true);
@@ -37,19 +37,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     } else {
     //alert(JSON.stringify(data));
     //alert(data.task.title);
-      document.getElementById('event-name').textContent = data.task.title;
-      document.getElementById('event-time-date').textContent = data.task.date;
-      document.getElementById('privacy-option').textContent = data.task.type;
-      document.getElementById('invite-option').textContent = data.task.privacy;
-      document.getElementById('limit-option').textContent = data.task.seating;
-      document.getElementById('reservation-option').textContent = data.task.category;
-      document.getElementById('category-option').textContent = data.task.customCategory;
-      //document.getElementById('event-creators').textContent = data.task.title;
-      document.getElementById('event-address').textContent = data.task.location;
-      document.getElementById('event-description').textContent = data.task.description;
-      document.getElementById('Attendee_num').textContent = 0;
+    console.log(data);
+    document.getElementById('event-name').textContent = data.eventName;
+    document.getElementById('event-time-date').textContent = data.eventDate;
+    document.getElementById('privacy-option').textContent = data.privacy;
+    document.getElementById('invite-option').textContent = data.inviteOption;
+    document.getElementById('limit-option').textContent = data.eventLimit;
+    document.getElementById('reservation-option').textContent = data.reservation ? "Yes" : "No";
+    document.getElementById('category-option').textContent = data.eventCategory;
+    // document.getElementById('event-creators').textContent = data.eventCreator; // Uncomment if needed
+    document.getElementById('event-address').textContent = data.eventAddress;
+    document.getElementById('event-description').textContent = data.eventDescription;
+    document.getElementById('Attendee_num').textContent = 0;
 
-      if(data.task.type === "Public"){
+      if(data.privacy === "Public"){
         //alert("disabled = false");
         joinButton.disabled = false;
       } else {

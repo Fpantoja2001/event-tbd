@@ -18,6 +18,7 @@ router.post('/event/create', async (req, res) => {
             eventAddress,
             eventDescription,
             eventImage,
+            eventIcon,
         } = req.body;
 
         const newEvent = await Event.create({
@@ -33,6 +34,7 @@ router.post('/event/create', async (req, res) => {
             eventAddress,
             eventDescription,
             eventImage,
+            eventIcon,
         });
 
         res.status(201).json({ message: 'Event created successfully.', event: newEvent });
@@ -85,6 +87,7 @@ router.put('/event/:id', async (req, res) => {
             eventAddress,
             eventDescription,
             eventImage,
+            eventIcon,
         } = req.body;
 
         event.eventName = eventName || event.eventName;
@@ -99,6 +102,7 @@ router.put('/event/:id', async (req, res) => {
         event.eventAddress = eventAddress || event.eventAddress;
         event.eventDescription = eventDescription || event.eventDescription;
         event.eventImage = eventImage || event.eventImage;
+        event.eventIcon = eventIcon || event.eventIcon;
 
         await event.save();
 
